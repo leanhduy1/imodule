@@ -39,12 +39,14 @@ cd $LABTAINER_DIR/scripts/labtainer-student
 
 ## Lưu ý
 
-- **`REGISTRY` trong `config/start.config` đang trỏ tới `leanh1`** (tài khoản Docker Hub cá nhân
-  đang lưu các image đã dựng sẵn). Khi bàn giao cho đơn vị khác cần đổi giá trị này sang tài khoản
-  của đơn vị đó, đồng thời đổi đường dẫn `imodule` trong các tệp hướng dẫn.
-- **Thiếu mã nguồn của `ops-elk-apache`.** Bài này hiện chỉ còn image trên Docker Hub; chưa tìm
-  được `Dockerfile` cũng như bản lưu mã nguồn nào. Cần xin lại từ tác giả gốc, nếu không sẽ không
-  dựng lại được.
+- **`REGISTRY` trong `config/start.config` trỏ tới `labattt2025`**, tài khoản Docker Hub của khoa.
+  Cả 42 image đã được chuyển sang đó. Bản cũ trên tài khoản cá nhân `leanh1` vẫn còn để dự phòng
+  nhưng không còn được dùng.
+- **Cấu hình nằm trong image, không chỉ trong imodule.** Lúc khởi động, container đọc
+  `~/.local/config/parameter.config` có sẵn trong image, không đọc bản trong imodule. Nếu đổi tên
+  bài hay tên container mà chỉ sửa imodule thì `HASH_REPLACE` sẽ nhắm vào container không tồn tại,
+  dòng `MSV:` không được thay, và mục `personalization` luôn bị chấm N. Đổi tên thì phải dựng lại
+  image (hoặc vá `.local/config` trong image) cho khớp.
 - Tên bài đã đổi sang bộ tiền tố `net-` / `ops-`. Tên bài được nhúng vào tên thư mục container,
   tên tệp `Dockerfile.*` và `*-home_tar.list`, nên khi đổi tên phải sửa đồng bộ cả bốn chỗ.
 - Các bài dẫn xuất từ bộ Labtainers của Trung tâm An ninh mạng và Tác chiến không gian mạng,
